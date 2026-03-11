@@ -37,8 +37,10 @@ export function configureLogger(config: LoggerConfig): void {
  * @returns LogLevel
  */
 function getLogLevelFromEnv(): LogLevel {
-  const envLevel = process.env.EXPO_PUBLIC_LOG_LEVEL;
-  if (!envLevel) return LogLevel.INFO;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const g = globalThis as unknown as { process?: { env?: Record<string, string | undefined> } };
+  const envLevel = g.process?.env?.EXPO_PUBLIC_LOG_LEVEL;
+  if (typeof envLevel !== 'string') return LogLevel.INFO;
 
   switch (envLevel.toUpperCase()) {
     case 'DEBUG':
@@ -101,20 +103,6 @@ const consoleHandler: LogHandler = (record: LogRecord): void => {
 
   const prefix = parts.join(' ');
 
-  // 格式化数据
-  const formatData = (item: unknown): string => {
-    if (item === undefined) return 'undefined';
-    if (item === null) return 'null';
-    if (typeof item === 'object') {
-      try {
-        return JSON.stringify(item, null, 2);
-      } catch {
-        return '[Circular]';
-      }
-    }
-    return String(item);
-  };
-
   // 构建日志内容
   const logArgs: unknown[] = [];
 
@@ -127,7 +115,7 @@ const consoleHandler: LogHandler = (record: LogRecord): void => {
   }
 
   // 添加额外数据
-  if (data && data.length > 0) {
+  if (Array.isArray(data) && data.length > 0) {
     if (data.length === 1) {
       logArgs.push(data[0]);
     } else {
@@ -171,9 +159,7 @@ class Logger implements ILogger {
     };
 
     // 执行所有处理器
-    const handlers = globalConfig.handlers.length > 0
-      ? globalHandlers
-      : [consoleHandler];
+    const handlers = globalConfig.handlers.length > 0 ? globalHandlers : [consoleHandler];
 
     handlers.forEach(handler => handler(record));
   }
@@ -195,9 +181,7 @@ class Logger implements ILogger {
   }
 
   namespace(name: string): ILogger {
-    const fullNamespace = this._namespace
-      ? `${this._namespace}:${name}`
-      : name;
+    const fullNamespace = this._namespace ? `${this._namespace}:${name}` : name;
     return new Logger(fullNamespace);
   }
 }

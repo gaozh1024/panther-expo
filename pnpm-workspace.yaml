@@ -1,3 +1,8 @@
 packages:
   - 'packages/*'
   - 'templates/*'
+  - 'examples/*'
+
+# pnpm配置
+autoInstallPeers: true
+strictPeerDependencies: false

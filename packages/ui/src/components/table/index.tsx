@@ -44,23 +44,20 @@ type ITableDataProps = React.ComponentProps<typeof View | typeof Text> & {
 };
 type ITableCaptionProps = React.ComponentProps<typeof ExpoTCaption>;
 
-const Table = React.forwardRef<
-  React.ComponentRef<typeof ExpoTable>,
-  ITableProps
->(({ className, ...props }, ref) => {
+const Table = React.forwardRef<typeof View, ITableProps>(({ className, ...props }, ref) => {
   return (
     <ExpoTable
-      ref={ref}
+      ref={ref as React.Ref<typeof View>}
       className={tableStyle({ class: className })}
       {...props}
     />
   );
 });
 
-const TableHeader = React.forwardRef<
-  React.ComponentRef<typeof ExpoTHead>,
-  ITableHeaderProps
->(function TableHeader({ className, ...props }, ref) {
+const TableHeader = React.forwardRef<typeof View, ITableHeaderProps>(function TableHeader(
+  { className, ...props },
+  ref
+) {
   const contextValue = useMemo(() => {
     return {
       isHeaderRow: true,
@@ -69,7 +66,7 @@ const TableHeader = React.forwardRef<
   return (
     <TableHeaderContext.Provider value={contextValue}>
       <ExpoTHead
-        ref={ref}
+        ref={ref as React.Ref<typeof View>}
         className={tableHeaderStyle({ class: className })}
         {...props}
       />
@@ -77,23 +74,23 @@ const TableHeader = React.forwardRef<
   );
 });
 
-const TableBody = React.forwardRef<
-  React.ComponentRef<typeof ExpoTBody>,
-  ITableBodyProps
->(function TableBody({ className, ...props }, ref) {
+const TableBody = React.forwardRef<typeof View, ITableBodyProps>(function TableBody(
+  { className, ...props },
+  ref
+) {
   return (
     <ExpoTBody
-      ref={ref}
+      ref={ref as React.Ref<typeof View>}
       className={tableBodyStyle({ class: className })}
       {...props}
     />
   );
 });
 
-const TableFooter = React.forwardRef<
-  React.ComponentRef<typeof ExpoTFoot>,
-  ITableFooterProps
->(function TableFooter({ className, ...props }, ref) {
+const TableFooter = React.forwardRef<typeof View, ITableFooterProps>(function TableFooter(
+  { className, ...props },
+  ref
+) {
   const contextValue = useMemo(() => {
     return {
       isFooterRow: true,
@@ -102,7 +99,7 @@ const TableFooter = React.forwardRef<
   return (
     <TableFooterContext.Provider value={contextValue}>
       <ExpoTFoot
-        ref={ref}
+        ref={ref as React.Ref<typeof View>}
         className={tableFooterStyle({ class: className })}
         {...props}
       />
@@ -110,14 +107,14 @@ const TableFooter = React.forwardRef<
   );
 });
 
-const TableHead = React.forwardRef<
-  React.ComponentRef<typeof View | typeof Text>,
-  ITableHeadProps
->(function TableHead({ useRNView = false, className, ...props }, ref) {
+const TableHead = React.forwardRef<View | Text, ITableHeadProps>(function TableHead(
+  { useRNView = false, className, ...props },
+  ref
+) {
   if (useRNView) {
     return (
       <View
-        ref={ref}
+        ref={ref as React.Ref<View>}
         className={tableHeadStyle({ class: className })}
         {...props}
       />
@@ -125,7 +122,7 @@ const TableHead = React.forwardRef<
   } else {
     return (
       <Text
-        ref={ref}
+        ref={ref as React.Ref<Text>}
         className={tableHeadStyle({ class: className })}
         {...props}
       />
@@ -133,16 +130,16 @@ const TableHead = React.forwardRef<
   }
 });
 
-const TableRow = React.forwardRef<
-  React.ComponentRef<typeof ExpoTR>,
-  ITableRowProps
->(function TableRow({ className, ...props }, ref) {
+const TableRow = React.forwardRef<typeof View, ITableRowProps>(function TableRow(
+  { className, ...props },
+  ref
+) {
   const { isHeaderRow } = useContext(TableHeaderContext);
   const { isFooterRow } = useContext(TableFooterContext);
 
   return (
     <ExpoTR
-      ref={ref}
+      ref={ref as React.Ref<typeof View>}
       className={tableRowStyleStyle({
         isHeaderRow,
         isFooterRow,
@@ -153,14 +150,14 @@ const TableRow = React.forwardRef<
   );
 });
 
-const TableData = React.forwardRef<
-  React.ComponentRef<typeof View | typeof Text>,
-  ITableDataProps
->(function TableData({ useRNView = false, className, ...props }, ref) {
+const TableData = React.forwardRef<View | Text, ITableDataProps>(function TableData(
+  { useRNView = false, className, ...props },
+  ref
+) {
   if (useRNView) {
     return (
       <View
-        ref={ref}
+        ref={ref as React.Ref<View>}
         className={tableDataStyle({ class: className })}
         {...props}
       />
@@ -168,7 +165,7 @@ const TableData = React.forwardRef<
   } else {
     return (
       <Text
-        ref={ref}
+        ref={ref as React.Ref<Text>}
         className={tableDataStyle({ class: className })}
         {...props}
       />
@@ -176,18 +173,17 @@ const TableData = React.forwardRef<
   }
 });
 
-const TableCaption = React.forwardRef<
-  React.ComponentRef<typeof ExpoTCaption>,
-  ITableCaptionProps
->(({ className, ...props }, ref) => {
-  return (
-    <ExpoTCaption
-      ref={ref}
-      className={tableCaptionStyle({ class: className })}
-      {...props}
-    />
-  );
-});
+const TableCaption = React.forwardRef<typeof Text, ITableCaptionProps>(
+  ({ className, ...props }, ref) => {
+    return (
+      <ExpoTCaption
+        ref={ref as React.Ref<typeof Text>}
+        className={tableCaptionStyle({ class: className })}
+        {...props}
+      />
+    );
+  }
+);
 
 Table.displayName = 'Table';
 TableHeader.displayName = 'TableHeader';
@@ -198,13 +194,4 @@ TableRow.displayName = 'TableRow';
 TableData.displayName = 'TableData';
 TableCaption.displayName = 'TableCaption';
 
-export {
-  Table,
-  TableHeader,
-  TableBody,
-  TableFooter,
-  TableHead,
-  TableRow,
-  TableData,
-  TableCaption,
-};
+export { Table, TableHeader, TableBody, TableFooter, TableHead, TableRow, TableData, TableCaption };

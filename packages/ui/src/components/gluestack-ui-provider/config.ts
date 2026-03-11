@@ -1,7 +1,7 @@
 'use client';
 import { vars } from 'nativewind';
 import { generateColorPalette } from '@panther-expo/theme/palette';
-import { lightColors, darkColors } from '@/configs';
+import { lightColors, darkColors } from './configs';
 
 /**
  * 将用户主题颜色映射到 Gluestack UI 的颜色变量
@@ -40,16 +40,31 @@ export const config = {
     ...generateColorPalette(lightColors.background),
 
     /* Background Special */
-    '--color-background-error': lightColors.errorBg.replace('rgba', '').replace(/[\(\)]/g, '').replace(/, /g, ' '),
-    '--color-background-warning': lightColors.warningBg.replace('rgba', '').replace(/[\(\)]/g, '').replace(/, /g, ' '),
-    '--color-background-success': lightColors.successBg.replace('rgba', '').replace(/[\(\)]/g, '').replace(/, /g, ' '),
+    '--color-background-error': lightColors.errorBg
+      .replace('rgba', '')
+      .replace(/[\(\)]/g, '')
+      .replace(/, /g, ' '),
+    '--color-background-warning': lightColors.warningBg
+      .replace('rgba', '')
+      .replace(/[\(\)]/g, '')
+      .replace(/, /g, ' '),
+    '--color-background-success': lightColors.successBg
+      .replace('rgba', '')
+      .replace(/[\(\)]/g, '')
+      .replace(/, /g, ' '),
     '--color-background-muted': generateColorPalette(lightColors.background)['50'],
-    '--color-background-info': lightColors.infoBg.replace('rgba', '').replace(/[\(\)]/g, '').replace(/, /g, ' '),
+    '--color-background-info': lightColors.infoBg
+      .replace('rgba', '')
+      .replace(/[\(\)]/g, '')
+      .replace(/, /g, ' '),
 
     /* Focus Ring Indicator */
-    '--color-indicator-primary': lightColors.primary.replace('#', '').match(/.{2}/g)?.join(' ') || '243 139 50',
-    '--color-indicator-info': lightColors.info.replace('#', '').match(/.{2}/g)?.join(' ') || '24 144 255',
-    '--color-indicator-error': lightColors.error.replace('#', '').match(/.{2}/g)?.join(' ') || '255 77 79',
+    '--color-indicator-primary':
+      lightColors.primary.replace('#', '').match(/.{2}/g)?.join(' ') || '243 139 50',
+    '--color-indicator-info':
+      lightColors.info.replace('#', '').match(/.{2}/g)?.join(' ') || '24 144 255',
+    '--color-indicator-error':
+      lightColors.error.replace('#', '').match(/.{2}/g)?.join(' ') || '255 77 79',
   }),
   dark: vars({
     /* Primary - 使用用户的主色调橙色 */
@@ -83,15 +98,30 @@ export const config = {
     ...generateColorPalette(darkColors.background),
 
     /* Background Special */
-    '--color-background-error': darkColors.errorBg.replace('rgba', '').replace(/[\(\)]/g, '').replace(/, /g, ' '),
-    '--color-background-warning': darkColors.warningBg.replace('rgba', '').replace(/[\(\)]/g, '').replace(/, /g, ' '),
-    '--color-background-success': darkColors.successBg.replace('rgba', '').replace(/[\(\)]/g, '').replace(/, /g, ' '),
+    '--color-background-error': darkColors.errorBg
+      .replace('rgba', '')
+      .replace(/[\(\)]/g, '')
+      .replace(/, /g, ' '),
+    '--color-background-warning': darkColors.warningBg
+      .replace('rgba', '')
+      .replace(/[\(\)]/g, '')
+      .replace(/, /g, ' '),
+    '--color-background-success': darkColors.successBg
+      .replace('rgba', '')
+      .replace(/[\(\)]/g, '')
+      .replace(/, /g, ' '),
     '--color-background-muted': generateColorPalette(darkColors.background)['50'],
-    '--color-background-info': darkColors.infoBg.replace('rgba', '').replace(/[\(\)]/g, '').replace(/, /g, ' '),
+    '--color-background-info': darkColors.infoBg
+      .replace('rgba', '')
+      .replace(/[\(\)]/g, '')
+      .replace(/, /g, ' '),
 
     /* Focus Ring Indicator */
-    '--color-indicator-primary': darkColors.primary.replace('#', '').match(/.{2}/g)?.join(' ') || '243 139 50',
-    '--color-indicator-info': darkColors.info.replace('#', '').match(/.{2}/g)?.join(' ') || '24 144 255',
-    '--color-indicator-error': darkColors.error.replace('#', '').match(/.{2}/g)?.join(' ') || '255 77 79',
+    '--color-indicator-primary':
+      darkColors.primary.replace('#', '').match(/.{2}/g)?.join(' ') || '243 139 50',
+    '--color-indicator-info':
+      darkColors.info.replace('#', '').match(/.{2}/g)?.join(' ') || '24 144 255',
+    '--color-indicator-error':
+      darkColors.error.replace('#', '').match(/.{2}/g)?.join(' ') || '255 77 79',
   }),
 };

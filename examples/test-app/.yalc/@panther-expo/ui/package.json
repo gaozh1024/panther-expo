@@ -14,15 +14,11 @@
     "pe-ui": "./scripts/generate-theme.js"
   },
   "scripts": {
-    "build": "tsup src/index.ts --format cjs,esm --treeshake --splitting --external react-native --external react --external @expo/html-elements",
+    "build": "tsc",
     "lint": "eslint src",
-    "generate-theme": "node scripts/generate-theme.js",
-    "test": "vitest run",
-    "test:watch": "vitest",
-    "clean": "rm -rf dist"
+    "generate-theme": "node scripts/generate-theme.js"
   },
   "dependencies": {
-    "@panther-expo/theme": "workspace:*",
     "@expo/html-elements": "^0.11.0",
     "@gluestack-ui/core": "^3.0.12",
     "@gluestack-ui/utils": "^3.0.15",
@@ -38,8 +34,5 @@
     "react-native": ">=0.81.0",
     "tailwindcss": "^3.4.0"
   },
-  "devDependencies": {
-    "react": "^19.0.0",
-    "@types/react": "^19.0.0"
-  }
+  "yalcSig": "5ef8ad7b3c57355b65ef54f38c03d6c2"
 }

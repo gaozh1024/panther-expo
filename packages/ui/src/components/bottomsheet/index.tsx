@@ -10,14 +10,7 @@ import GorhomBottomSheet, {
 import { Platform } from 'react-native';
 import type { PressableProps, TextProps } from 'react-native';
 import { FocusScope } from '@gluestack-ui/utils/aria';
-import React, {
-  createContext,
-  useCallback,
-  useContext,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
+import React, { createContext, useCallback, useContext, useMemo, useRef, useState } from 'react';
 import { Pressable, Text } from 'react-native';
 import { cssInterop } from 'nativewind';
 import { tva } from '@gluestack-ui/utils/nativewind-utils';
@@ -43,7 +36,7 @@ const bottomSheetItemStyle = tva({
 
 const BottomSheetContext = createContext<{
   visible: boolean;
-  bottomSheetRef: React.RefObject<GorhomBottomSheet>;
+  bottomSheetRef: React.RefObject<GorhomBottomSheet | null>;
   handleClose: () => void;
   handleOpen: () => void;
 }>({
@@ -139,7 +132,7 @@ export const BottomSheetTrigger = ({
   const { handleOpen } = useContext(BottomSheetContext);
   return (
     <Pressable
-      onPress={(e) => {
+      onPress={e => {
         props.onPress && props.onPress(e);
         handleOpen();
       }}
@@ -152,9 +145,7 @@ export const BottomSheetTrigger = ({
     </Pressable>
   );
 };
-type IBottomSheetBackdrop = React.ComponentProps<
-  typeof GorhomBottomSheetBackdrop
->;
+type IBottomSheetBackdrop = React.ComponentProps<typeof GorhomBottomSheetBackdrop>;
 
 export const BottomSheetBackdrop = ({
   disappearsOnIndex = -1,
@@ -266,7 +257,7 @@ export const BottomSheetItem = ({
       className={bottomSheetItemStyle({
         className: className,
       })}
-      onPress={(e) => {
+      onPress={e => {
         if (closeOnSelect) {
           handleClose();
         }
@@ -286,7 +277,9 @@ export const BottomSheetItemText = ({ ...props }: TextProps) => {
 export const BottomSheetScrollView = GorhomBottomSheetScrollView;
 export const BottomSheetFlatList = GorhomBottomSheetFlatList;
 export const BottomSheetSectionList = GorhomBottomSheetSectionList;
-export const BottomSheetTextInput = GorhomBottomSheetInput;
+export const BottomSheetTextInput: React.ComponentType<
+  React.ComponentProps<typeof GorhomBottomSheetInput>
+> = GorhomBottomSheetInput;
 
 cssInterop(GorhomBottomSheetInput, { className: 'style' });
 cssInterop(GorhomBottomSheetScrollView, { className: 'style' });

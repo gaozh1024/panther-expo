@@ -27,11 +27,8 @@
     }
   },
   "scripts": {
-    "build": "tsup src/index.ts --format cjs,esm --dts --treeshake --splitting",
-    "lint": "eslint src",
-    "test": "vitest run",
-    "test:watch": "vitest",
-    "clean": "rm -rf dist"
+    "build": "tsc",
+    "lint": "eslint src"
   },
   "dependencies": {
     "zod": "^4.3.6"
@@ -44,8 +41,5 @@
     "react-native": ">=0.81.0",
     "@tanstack/react-query": ">=5.0.0"
   },
-  "devDependencies": {
-    "react": "^19.0.0",
-    "@types/react": "^19.0.0"
-  }
+  "yalcSig": "73bf7f38bb2ae372d029c8b414a374e8"
 }

@@ -11,13 +11,11 @@
     }
   },
   "scripts": {
-    "build": "tsup src/index.ts --format cjs,esm --dts --treeshake --splitting",
-    "lint": "eslint src",
-    "test": "vitest run",
-    "test:watch": "vitest",
-    "clean": "rm -rf dist"
+    "build": "tsc",
+    "lint": "eslint src"
   },
   "peerDependencies": {
     "zod": "^4.0.0"
-  }
+  },
+  "yalcSig": "d19d23f3e49dbf59532d9f6d2b596e72"
 }

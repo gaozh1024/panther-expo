@@ -30,8 +30,8 @@ export const LogLevelNames: Record<LogLevel, string> = {
  */
 export const LogLevelColors: Record<LogLevel, string> = {
   [LogLevel.DEBUG]: '#6B7280', // gray
-  [LogLevel.INFO]: '#3B82F6',  // blue
-  [LogLevel.WARN]: '#F59E0B',  // yellow
+  [LogLevel.INFO]: '#3B82F6', // blue
+  [LogLevel.WARN]: '#F59E0B', // yellow
   [LogLevel.ERROR]: '#EF4444', // red
   [LogLevel.SILENT]: 'transparent',
 };
@@ -47,7 +47,7 @@ export interface LogRecord {
   /** 日志消息 */
   message: string;
   /** 额外数据 */
-  data?: unknown;
+  data?: unknown[];
   /** 时间戳 */
   timestamp: number;
   /** 日期字符串 */

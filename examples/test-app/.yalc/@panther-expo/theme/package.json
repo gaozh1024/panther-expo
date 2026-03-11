@@ -19,18 +19,12 @@
     }
   },
   "scripts": {
-    "build": "tsup src/index.ts --format cjs,esm --dts --treeshake --splitting",
-    "lint": "eslint src",
-    "test": "vitest run",
-    "test:watch": "vitest",
-    "clean": "rm -rf dist"
+    "build": "tsc",
+    "lint": "eslint src"
   },
   "peerDependencies": {
     "react": ">=18.0.0",
     "react-native": ">=0.81.0"
   },
-  "devDependencies": {
-    "react": "^19.0.0",
-    "@types/react": "^19.0.0"
-  }
+  "yalcSig": "c7bdb1e737145fc88219813667961cb4"
 }
