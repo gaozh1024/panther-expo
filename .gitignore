@@ -87,3 +87,21 @@ web-build/
 
 # Generated theme files (for testing)
 theme-generated/
+
+# Examples and templates build outputs
+examples/**/node_modules/
+examples/**/dist/
+examples/**/.expo/
+examples/**/web-build/
+templates/**/node_modules/
+templates/**/dist/
+templates/**/.expo/
+templates/**/web-build/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini

@@ -15,6 +15,7 @@ __tests__/
 # Development
 .eslintrc*
 .prettierrc*
+jest.config.*
 
 # Documentation (keep README)
 CHANGELOG.md
@@ -22,3 +23,6 @@ CONTRIBUTING.md
 
 # CI
 .github/
+
+# Git
+.gitignore

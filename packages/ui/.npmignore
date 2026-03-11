@@ -15,6 +15,7 @@ __tests__/
 # Development
 .eslintrc*
 .prettierrc*
+jest.config.*
 
 # Documentation (keep README)
 CHANGELOG.md
@@ -23,5 +24,8 @@ CONTRIBUTING.md
 # CI
 .github/
 
-# Scripts (CLI is handled separately)
-scripts/
+# Git
+.gitignore
+
+# NOTE: scripts/ directory is NOT ignored because it contains the CLI tool
+# The CLI is defined in package.json bin field
